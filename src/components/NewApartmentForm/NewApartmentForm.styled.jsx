@@ -21,7 +21,7 @@ const textFieldStyles = css`
 
 export const Form = styled.form`
   background-color: #e8eaed;
-  padding: 20px;
+  padding: 20px 20px 30px;
   border-radius: 5px;
   border: 1px solid #d5d7db;
   display: flex;
@@ -36,6 +36,7 @@ export const Label = styled.label`
   display: inline-block;
   font-size: 0.7rem;
   padding: 0;
+  position: relative;
 `;
 export const FieldName = styled(Label)`
   width: 100%;
@@ -79,4 +80,9 @@ export const Fieldset = styled.fieldset`
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+`;
+export const ErrorMessage = styled.div`
+  position: absolute;
+  top: 100%;
+  color: red;
 `;
