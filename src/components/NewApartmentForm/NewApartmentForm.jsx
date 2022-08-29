@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import React from "react";
+import { addApartment } from "services/apartmentsApi";
 import * as yup from "yup";
 import {
   ErrorMessage,
@@ -14,7 +15,7 @@ import {
   Textarea,
 } from "./NewApartmentForm.styled";
 
-function NewApartmentForm(props) {
+function NewApartmentForm({ refershApartments }) {
   const validationSchema = yup.object().shape({
     name: yup
       .string()
@@ -42,7 +43,15 @@ function NewApartmentForm(props) {
     },
     validationSchema,
     onSubmit: (values) => {
-      console.log("values", values);
+      addApartment({
+        name: values.name.trim(),
+        rooms: Number(values.rooms),
+        price: Number(values.price),
+        description: values.description.trim(),
+      }).then(() => {
+        refershApartments();
+        formik.resetForm();
+      });
     },
   });
   return (
@@ -98,14 +107,16 @@ function NewApartmentForm(props) {
               type="textarea"
               name="description"
               onChange={formik.handleChange}
-              value={formik.values.textarea}
+              value={formik.values.description}
             />
             {formik.touched.description && formik.errors.description ? (
               <ErrorMessage>{formik.errors.description}</ErrorMessage>
             ) : null}
           </FieldDescription>
         </Fieldset>
-        <Submit type="submit">Add</Submit>
+        <Submit type="submit" disabled={formik.isSubmitting}>
+          Add
+        </Submit>
       </Form>
     </section>
   );

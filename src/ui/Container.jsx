@@ -1,5 +1,5 @@
-import Box from "components/Box";
 import React from "react";
+import Box from "ui/Box";
 
 export default function Container({ children }) {
   return (
