@@ -10,7 +10,7 @@ export default function ApartmentList({
 }) {
   return (
     <section>
-      <h2>Available apartmens {apartments && `(${apartments?.length})`}</h2>
+      <h2>Available apartments {apartments && `(${apartments?.length})`}</h2>
       {children}
       <List>
         {error && <p>{error}</p>}
